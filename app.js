@@ -6,7 +6,7 @@
     lang: localStorage.getItem("samacharSaralLang") || "hi",
     category: "all",
     search: "",
-    currentArticleId: document.body.dataset.articleId || "",
+    currentArticleId: new URLSearchParams(location.search).get("id") || document.body.dataset.articleId || "",
     assistantText: ""
   };
 
@@ -175,6 +175,18 @@
       if (state.assistantText) speak(state.assistantText);
     });
 
+    document.querySelectorAll("[data-popular-search]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const value = button.dataset.popularSearch || "";
+        if ($("#searchInput")) $("#searchInput").value = value;
+        if ($("#assistantQuery")) $("#assistantQuery").value = value;
+        state.search = value.toLowerCase();
+        renderArticles();
+        runAssistant();
+        $("#latest")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+
     document.addEventListener("click", (event) => {
       const listen = event.target.closest("[data-listen]");
       if (listen) speak(articleSpeakText(findArticle(listen.dataset.listen)));
@@ -254,7 +266,7 @@
         <p>${escapeHtml(text(article, "dek"))}</p>
         <div class="source-line">${escapeHtml(t("source"))}: <a href="${escapeAttr(article.sourceUrl)}" target="_blank" rel="noopener">${escapeHtml(article.sourceName)}</a></div>
         <div class="card-actions">
-          <a class="primary-button" href="articles/${escapeAttr(article.slug)}">${escapeHtml(t("read"))}</a>
+          <a class="primary-button" href="${escapeAttr(articleUrl(article))}">${escapeHtml(t("read"))}</a>
           <button type="button" class="secondary-button" data-listen="${escapeAttr(article.id)}">${escapeHtml(t("listen"))}</button>
           <button type="button" class="plain-button ${saved ? "saved" : ""}" data-bookmark="${escapeAttr(article.id)}">${escapeHtml(saved ? t("bookmarked") : t("bookmark"))}</button>
         </div>
@@ -366,7 +378,7 @@
     const node = $(selector);
     if (!node) return;
     const items = ids.map(findArticle).filter(Boolean).slice(0, 5);
-    node.innerHTML = items.length ? items.map((article) => `<a href="${location.pathname.includes("/articles/") ? "" : "articles/"}${escapeAttr(article.slug)}">${escapeHtml(text(article, "title"))}</a>`).join("") : `<p>${escapeHtml(empty)}</p>`;
+    node.innerHTML = items.length ? items.map((article) => `<a href="${escapeAttr(articleUrl(article))}">${escapeHtml(text(article, "title"))}</a>`).join("") : `<p>${escapeHtml(empty)}</p>`;
   }
 
   function toggleBookmark(id) {
@@ -426,6 +438,11 @@
 
   function findArticle(id) {
     return data.articles.find((article) => article.id === id || article.slug === id);
+  }
+
+  function articleUrl(article) {
+    const prefix = location.pathname.includes("/articles/") ? "" : "articles/";
+    return prefix + article.slug;
   }
 
   function escapeHtml(value) {
