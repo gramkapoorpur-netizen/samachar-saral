@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://gramkapoorpur-netizen.github.io/samachar-saral/sitemap.xml
