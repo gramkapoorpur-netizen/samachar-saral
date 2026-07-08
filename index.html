@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>समाचार सरल | Hindi News Explainers</title>
+  <meta name="description" content="समाचार सरल: Hindi-first copyright-safe news explainer platform with source credit, short summaries, ELI15 mode, quizzes, audio, bookmarks and daily brief.">
+  <meta name="theme-color" content="#16382f">
+  <link rel="canonical" href="https://gramkapoorpur-netizen.github.io/samachar-saral/">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Samachar Saral",
+    "alternateName": "समाचार सरल",
+    "url": "https://gramkapoorpur-netizen.github.io/samachar-saral/",
+    "inLanguage": ["hi-IN", "en-IN"],
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://gramkapoorpur-netizen.github.io/samachar-saral/?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+  <script src="assets/news-data.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html" aria-label="Samachar Saral home">
+      <span class="brand-mark">स</span>
+      <span>
+        <strong>समाचार सरल</strong>
+        <small data-i18n="tagline">खबर नहीं कॉपी, खबर की समझ</small>
+      </span>
+    </a>
+    <label class="search-box">
+      <span data-i18n="searchLabel">खोजें</span>
+      <input id="searchInput" type="search" placeholder="खबर, नौकरी, खेती, स्वास्थ्य खोजें">
+    </label>
+    <div class="top-actions">
+      <select id="languageSelect" aria-label="Language">
+        <option value="hi">हिंदी</option>
+        <option value="en">English</option>
+      </select>
+      <a class="admin-link" href="admin.html">Admin</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero-band">
+      <div class="hero-copy">
+        <p class="eyebrow" data-i18n="eyebrow">Hindi-first news explainers</p>
+        <h1 data-i18n="heroTitle">कम शब्दों में खबर की पूरी समझ</h1>
+        <p data-i18n="heroText">हम full article copy नहीं करते. हम headline, source credit और original short explainer देते हैं.</p>
+        <div class="hero-actions">
+          <button type="button" id="playBriefButton" class="primary-button">आज की Top 10 सुनें</button>
+          <a class="secondary-button" href="#latest" data-i18n="readLatest">Latest explainers</a>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <img src="assets/hero-news.jpg" alt="">
+      </div>
+    </section>
+
+    <section class="policy-strip" aria-label="Copyright policy">
+      <span data-i18n="policyOne">Headline + short summary only</span>
+      <span data-i18n="policyTwo">Original source link always</span>
+      <span data-i18n="policyThree">Editor review before publishing</span>
+      <span data-i18n="policyFour">No Google Search scraping</span>
+    </section>
+
+    <section class="dashboard-grid">
+      <aside class="brief-panel" aria-labelledby="briefTitle">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow" data-i18n="dailyEyebrow">Daily brief</p>
+            <h2 id="briefTitle" data-i18n="dailyTitle">आज की Top 10</h2>
+          </div>
+          <button type="button" class="icon-button" id="stopAudioButton" title="Stop audio">■</button>
+        </div>
+        <ol id="dailyBriefList" class="brief-list"></ol>
+      </aside>
+
+      <section class="main-panel" id="latest">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow" data-i18n="latestEyebrow">Explain, not copy</p>
+            <h2 data-i18n="latestTitle">Latest explainers</h2>
+          </div>
+          <div id="categoryTabs" class="category-tabs" role="tablist" aria-label="Categories"></div>
+        </div>
+        <div class="ad-slot" aria-label="Advertisement">Advertisement</div>
+        <div id="articleGrid" class="article-grid"></div>
+      </section>
+    </section>
+
+    <section class="assistant-panel" aria-labelledby="assistantTitle">
+      <div>
+        <p class="eyebrow" data-i18n="assistantEyebrow">AI news helper</p>
+        <h2 id="assistantTitle" data-i18n="assistantTitle">खबर खोजें और आवाज में समझें</h2>
+        <p data-i18n="assistantText">Topic लिखें. Assistant matching explainers, source links और आसान Hindi जवाब देगा. यह Google Search scrape नहीं करता.</p>
+      </div>
+      <form id="assistantForm" class="assistant-form">
+        <input id="assistantQuery" type="search" placeholder="जैसे: नौकरी, OTP, मौसम, scholarship">
+        <button type="submit" data-i18n="assistantAsk">Search</button>
+        <button type="button" id="assistantSpeak" class="secondary-button" data-i18n="assistantSpeak">जवाब सुनें</button>
+      </form>
+      <div id="assistantAnswer" class="assistant-answer" role="status" aria-live="polite"></div>
+    </section>
+
+    <section class="reader-tools">
+      <article>
+        <h2 data-i18n="bookmarksTitle">Bookmarks</h2>
+        <div id="bookmarkList" class="mini-list"></div>
+      </article>
+      <article>
+        <h2 data-i18n="historyTitle">Reading history</h2>
+        <div id="historyList" class="mini-list"></div>
+      </article>
+      <article>
+        <h2 data-i18n="earningTitle">Earning model</h2>
+        <p data-i18n="earningText">High-quality original explainers, good SEO, clean ad slots and policy pages build an AdSense-ready foundation.</p>
+      </article>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <strong>समाचार सरल</strong>
+    <a href="policy.html">Editorial & copyright policy</a>
+    <a href="privacy.html">Privacy</a>
+    <a href="admin.html">Admin review</a>
+  </footer>
+</body>
+</html>
