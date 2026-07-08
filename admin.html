@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Admin Review | Samachar Saral</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="assets/news-data.js" defer></script>
+  <script src="admin.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html"><span class="brand-mark">स</span><span><strong>समाचार सरल Admin</strong><small>Review before publish</small></span></a>
+    <div class="top-actions"><a class="admin-link" href="index.html">Open site</a></div>
+  </header>
+  <main class="admin-shell">
+    <section class="admin-card">
+      <p class="eyebrow">Editorial safety</p>
+      <h1>AI summary review panel</h1>
+      <p>This live static admin stores edits in this browser for MVP review. Production backend should save to SQL Server/PostgreSQL and require login.</p>
+      <span class="status-pill">No copied full articles</span>
+    </section>
+    <section class="admin-grid">
+      <aside class="admin-card">
+        <h2>Draft explainers</h2>
+        <div id="draftList" class="draft-list"></div>
+      </aside>
+      <section class="admin-card">
+        <h2 id="editorTitle">Select a draft</h2>
+        <form id="editorForm" class="admin-editor">
+          <label>Title <input name="title"></label>
+          <label>Short summary <textarea name="summary"></textarea></label>
+          <label>Why it matters <textarea name="why"></textarea></label>
+          <label>ELI15 <textarea name="eli15"></textarea></label>
+          <label>Source URL <input name="sourceUrl" type="url"></label>
+          <button type="submit" class="primary-button">Save review locally</button>
+        </form>
+        <p id="adminStatus" class="source-line"></p>
+      </section>
+    </section>
+  </main>
+</body>
+</html>
